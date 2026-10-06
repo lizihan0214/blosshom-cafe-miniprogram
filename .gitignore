@@ -1,0 +1,21 @@
+# Local dependencies, build products and working files
+.pnpm-store/
+.tmp-*/
+tmp/
+work/
+**/node_modules/
+**/.pnpm-home/
+**/dist/
+**/unpackage/
+*.log
+*.log.err
+*.zip
+# Secrets and machine-local settings
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.p12
+**/*.pfx
+**/project.private.config.json
+**/.DS_Store

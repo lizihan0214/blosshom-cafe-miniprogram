@@ -1,0 +1,13 @@
+{
+  "categories": [
+    { "name": "enabled_sort", "unique": false, "keys": [{ "name": "enabled", "direction": "1" }, { "name": "sort", "direction": "1" }] }
+  ],
+  "products": [
+    { "name": "enabled_sort", "unique": false, "keys": [{ "name": "enabled", "direction": "1" }, { "name": "sort", "direction": "1" }] },
+    { "name": "enabled_category_sort", "unique": false, "keys": [{ "name": "enabled", "direction": "1" }, { "name": "category", "direction": "1" }, { "name": "sort", "direction": "1" }] }
+  ],
+  "orders": [
+    { "name": "openid_createdAt", "unique": false, "keys": [{ "name": "openid", "direction": "1" }, { "name": "createdAt", "direction": "-1" }] },
+    { "name": "openid_clientRequestId", "unique": true, "keys": [{ "name": "openid", "direction": "1" }, { "name": "clientRequestId", "direction": "1" }] }
+  ]
+}

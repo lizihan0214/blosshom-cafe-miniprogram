@@ -1,0 +1,4 @@
+{"_id":"coffee","id":"coffee","name":"咖啡","enabled":true,"sort":10}
+{"_id":"mains","id":"mains","name":"主食","enabled":true,"sort":20}
+{"_id":"food","id":"food","name":"小食","enabled":true,"sort":30}
+{"_id":"cocktails","id":"cocktails","name":"酒水","enabled":true,"sort":40}

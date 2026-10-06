@@ -1,0 +1,7 @@
+export const storeConfig = Object.freeze({
+  name: '繁花 Blosshom & Cafe',
+  address: '珠海市金湾区上表生活区22栋',
+  phone: '0756-7799813',
+  hours: '每日 08:00–18:00',
+  open: true
+})

@@ -1,0 +1,9 @@
+node_modules/
+unpackage/
+dist/
+artifacts/table-qrcodes/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store

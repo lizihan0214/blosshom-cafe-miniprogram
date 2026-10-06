@@ -1,0 +1,8 @@
+{
+  "getMenu": { "invoke": true },
+  "createPayment": { "invoke": "auth != null" },
+  "queryOrder": { "invoke": "auth != null" },
+  "getMyOrders": { "invoke": "auth != null" },
+  "paymentNotify": { "invoke": false },
+  "*": { "invoke": false }
+}

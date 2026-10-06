@@ -1,0 +1,13 @@
+_id,tableNo,name,enabled,sort,qrScene
+table-01,01,01桌,true,1,t=01
+table-02,02,02桌,true,2,t=02
+table-03,03,03桌,true,3,t=03
+table-04,04,04桌,true,4,t=04
+table-05,05,05桌,true,5,t=05
+table-06,06,06桌,true,6,t=06
+table-07,07,07桌,true,7,t=07
+table-08,08,08桌,true,8,t=08
+table-09,09,09桌,true,9,t=09
+table-10,10,10桌,true,10,t=10
+table-11,11,11桌,true,11,t=11
+table-12,12,12桌,true,12,t=12

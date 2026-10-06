@@ -1,0 +1,5 @@
+_id,id,name,enabled,sort
+coffee,coffee,咖啡,true,10
+mains,mains,主食,true,20
+food,food,小食,true,30
+cocktails,cocktails,酒水,true,40

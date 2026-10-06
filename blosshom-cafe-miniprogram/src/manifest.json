@@ -1,0 +1,15 @@
+{
+  "name": "Blosshom & Cafe",
+  "appid": "wx9911d30b35ffc8b1",
+  "description": "单门店到店自提点单小程序",
+  "versionName": "1.0.2",
+  "versionCode": "12",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wx9911d30b35ffc8b1",
+    "cloudfunctionRoot": "cloudfunctions/",
+    "lazyCodeLoading": "requiredComponents",
+    "setting": { "urlCheck": false, "es6": true, "minified": true },
+    "usingComponents": true
+  }
+}

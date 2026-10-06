@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "version": "2.0",
+  "envId": "cloud1-d8gupi6ncd593f141",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    { "name": "getMenu", "timeout": 10, "installDependency": true },
+    { "name": "createPayment", "timeout": 10, "installDependency": true },
+    { "name": "queryOrder", "timeout": 10, "installDependency": true },
+    { "name": "getMyOrders", "timeout": 10, "installDependency": true },
+    { "name": "paymentNotify", "timeout": 10, "installDependency": true }
+  ]
+}

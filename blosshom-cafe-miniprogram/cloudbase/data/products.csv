@@ -1,0 +1,7 @@
+_id,id,name,category,description,basePrice,enabled,soldOut,sort,featured,image,imageTone
+C001,C001,浓缩咖啡 / Espresso,coffee,30 ml / 热 · 醇厚浓郁，带焦糖与坚果香气 · 建议堂食,1000,true,false,10,true,,#B88964
+C002,C002,拿铁 / Latte,coffee,360 ml / 热 · 意式浓缩与顺滑牛奶，口感柔和,2200,true,false,20,true,,#CFAB84
+C003,C003,冰美式 / Iced Americano,coffee,450 ml / 冰 · 清爽干净，突出咖啡豆本味,1800,true,false,30,false,,#8F715D
+F005,F005,番茄意面 / Tomato Pasta,mains,番茄酱汁、意面、罗勒与帕玛森芝士,3200,true,false,10,false,,#B8755E
+F001,F001,黄油可颂 / Butter Croissant,food,外酥内软，黄油香气饱满,1800,true,false,10,true,,#D8B272
+A001,A001,Gin & Tonic / 金汤力,cocktails,含酒精，仅限成年人,5800,true,false,10,false,,#AAB49B

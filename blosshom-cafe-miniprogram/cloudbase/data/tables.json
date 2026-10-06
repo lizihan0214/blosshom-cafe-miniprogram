@@ -1,0 +1,12 @@
+{"_id":"table-01","tableNo":"01","name":"01桌","enabled":true,"sort":1,"qrScene":"t=01"}
+{"_id":"table-02","tableNo":"02","name":"02桌","enabled":true,"sort":2,"qrScene":"t=02"}
+{"_id":"table-03","tableNo":"03","name":"03桌","enabled":true,"sort":3,"qrScene":"t=03"}
+{"_id":"table-04","tableNo":"04","name":"04桌","enabled":true,"sort":4,"qrScene":"t=04"}
+{"_id":"table-05","tableNo":"05","name":"05桌","enabled":true,"sort":5,"qrScene":"t=05"}
+{"_id":"table-06","tableNo":"06","name":"06桌","enabled":true,"sort":6,"qrScene":"t=06"}
+{"_id":"table-07","tableNo":"07","name":"07桌","enabled":true,"sort":7,"qrScene":"t=07"}
+{"_id":"table-08","tableNo":"08","name":"08桌","enabled":true,"sort":8,"qrScene":"t=08"}
+{"_id":"table-09","tableNo":"09","name":"09桌","enabled":true,"sort":9,"qrScene":"t=09"}
+{"_id":"table-10","tableNo":"10","name":"10桌","enabled":true,"sort":10,"qrScene":"t=10"}
+{"_id":"table-11","tableNo":"11","name":"11桌","enabled":true,"sort":11,"qrScene":"t=11"}
+{"_id":"table-12","tableNo":"12","name":"12桌","enabled":true,"sort":12,"qrScene":"t=12"}

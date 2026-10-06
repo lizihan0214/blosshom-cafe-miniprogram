@@ -1,0 +1,3 @@
+<template><view class="empty"><text class="flower">✿</text><text class="empty-title">{{ title }}</text><text class="muted">{{ description }}</text><button v-if="action" class="primary action" @click="$emit('action')">{{ action }}</button></view></template>
+<script>export default { props: { title: String, description: String, action: String } }</script>
+<style scoped>.empty { padding: 120rpx 32rpx; text-align: center; }.flower, .empty-title, .muted { display: block; }.flower { color: #C7A27C; font-size: 80rpx; }.empty-title { margin: 24rpx 0 12rpx; font-size: 34rpx; font-weight: 600; }.action { width: 280rpx; margin-top: 36rpx; }</style>

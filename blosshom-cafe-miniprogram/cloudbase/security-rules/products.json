@@ -1,0 +1,4 @@
+{
+  "read": "doc.enabled == true",
+  "write": false
+}
