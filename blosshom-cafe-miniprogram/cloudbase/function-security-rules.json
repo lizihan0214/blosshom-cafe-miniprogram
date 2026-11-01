@@ -4,5 +4,6 @@
   "queryOrder": { "invoke": "auth != null" },
   "getMyOrders": { "invoke": "auth != null" },
   "paymentNotify": { "invoke": false },
+  "dispatchPrint": { "invoke": false },
   "*": { "invoke": false }
 }

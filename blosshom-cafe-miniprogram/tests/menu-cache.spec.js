@@ -33,6 +33,46 @@ describe('CloudBase menu cache fallback', () => {
     expect(isMenuOffline()).toBe(true)
   })
 
+  test('cached menu is synchronous and performs no network request', async () => {
+    global.wx = { cloud: { callFunction: jest.fn().mockResolvedValue({ result: cloudMenu }) } }
+    const { getMenu, getCachedMenu } = require('../src/services/menu')
+    expect(getCachedMenu()).toBeNull()
+    await getMenu()
+    const cached = getCachedMenu()
+    expect(cached.products[0].basePrice).toBe(2200)
+    expect(cached.offline).toBe(true)
+    expect(global.wx.cloud.callFunction).toHaveBeenCalledTimes(1)
+  })
+
+  test('renders fresh prices before image URLs finish and shares concurrent menu requests', async () => {
+    let finishImages
+    const fileID = 'cloud://test-env.bucket/new.jpg'
+    global.wx = { cloud: {
+      callFunction: jest.fn().mockResolvedValue({ result: { ...cloudMenu, products: [{ ...cloudMenu.products[0], image: fileID }] } }),
+      getTempFileURL: jest.fn(() => new Promise(resolve => { finishImages = resolve }))
+    } }
+    const { getMenu } = require('../src/services/menu')
+    const onData = jest.fn()
+    const first = getMenu({ onData })
+    await new Promise(resolve => setImmediate(resolve))
+    expect(onData).toHaveBeenCalledWith(expect.objectContaining({ source: 'cloud', offline: false }))
+    expect(onData.mock.calls[0][0].products[0].basePrice).toBe(2200)
+    finishImages({ fileList: [{ fileID, status: 0, tempFileURL: 'https://example.test/new.jpg' }] })
+    await first
+    await Promise.all([getMenu(), getMenu()])
+    expect(global.wx.cloud.callFunction).toHaveBeenCalledTimes(2)
+    expect(global.wx.cloud.getTempFileURL).toHaveBeenCalledTimes(1)
+  })
+
+  test('offline fallback does not wait for the image service', async () => {
+    global.wx = { cloud: { callFunction: jest.fn().mockResolvedValueOnce({ result: cloudMenu }).mockRejectedValue(new Error('offline')) } }
+    const { getMenu } = require('../src/services/menu')
+    await getMenu()
+    global.wx.cloud.getTempFileURL = jest.fn(() => new Promise(() => {}))
+    expect((await getMenu()).offline).toBe(true)
+    expect(global.wx.cloud.getTempFileURL).not.toHaveBeenCalled()
+  })
+
   test('uses the bundled product image when a known cloud product has no image yet', async () => {
     global.wx = {
       cloud: {

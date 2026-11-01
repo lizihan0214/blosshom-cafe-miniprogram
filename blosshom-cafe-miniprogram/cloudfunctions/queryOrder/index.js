@@ -55,6 +55,15 @@ async function syncPayment(order) {
   return refreshed.data
 }
 
+async function requestPrint(order) {
+  if (order.paymentStatus !== 'PAID') return
+  try {
+    await cloud.callFunction({ name: 'dispatchPrint', data: { orderNo: order.orderNo || order._id } })
+  } catch (error) {
+    console.error('dispatchPrint failed:', error && error.message ? error.message : 'unknown error')
+  }
+}
+
 exports.main = async event => {
   const { OPENID } = cloud.getWXContext()
   const orderNo = String(event && event.orderNo || '').trim()
@@ -63,5 +72,7 @@ exports.main = async event => {
 
   const result = await db.collection('orders').where({ _id: orderNo, openid: OPENID }).limit(1).get()
   if (!result.data.length) throw new Error('未找到订单')
-  return publicOrder(await syncPayment(result.data[0]))
+  const order = await syncPayment(result.data[0])
+  await requestPrint(order)
+  return publicOrder(order)
 }

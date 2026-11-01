@@ -32,7 +32,7 @@ async function markPaid(transaction) {
     if (order.transactionId !== transaction.transaction_id) throw new Error('订单已绑定其他微信支付订单号')
     const pickup = await allocatePickupCode(db, order)
     if (pickup.code !== order.pickupCode) await db.collection('orders').doc(order._id).update({ data: { pickupCode: pickup.code, pickupDate: pickup.date, updatedAt: db.serverDate() } })
-    return
+    return { ...order, pickupCode: pickup.code, pickupDate: pickup.date }
   }
   if (order.paymentStatus === 'REFUNDED') throw new Error('退款订单不能再次标记支付成功')
   const pickup = await allocatePickupCode(db, { ...order, paidAt: transaction.success_time || new Date() })
@@ -45,6 +45,15 @@ async function markPaid(transaction) {
     paidAt: transaction.success_time ? new Date(transaction.success_time) : db.serverDate(),
     updatedAt: db.serverDate()
   } })
+  return { ...order, paymentStatus: 'PAID', fulfillmentStatus: 'PREPARING', transactionId: transaction.transaction_id, pickupCode: pickup.code, pickupDate: pickup.date, paidAt: transaction.success_time || new Date() }
+}
+
+async function requestPrint(order) {
+  try {
+    await cloud.callFunction({ name: 'dispatchPrint', data: { orderNo: order.orderNo || order._id } })
+  } catch (error) {
+    console.error('dispatchPrint failed:', error && error.message ? error.message : 'unknown error')
+  }
 }
 
 exports.main = async event => {
@@ -54,7 +63,8 @@ exports.main = async event => {
     const notification = JSON.parse(body)
     if (notification.event_type !== 'TRANSACTION.SUCCESS') throw new Error('回调事件类型无效')
     const transaction = decryptResource(notification.resource)
-    await markPaid(transaction)
+    const order = await markPaid(transaction)
+    await requestPrint(order)
     return response(200)
   } catch (error) {
     console.error('paymentNotify rejected:', error && error.message ? error.message : 'unknown error')

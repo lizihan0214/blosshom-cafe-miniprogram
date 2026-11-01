@@ -9,6 +9,7 @@ export async function createPayment(payload) {
   if (isCloudReady()) {
     if (isMenuOffline()) throw new Error('当前正在使用离线菜单，联网刷新后才能创建订单')
     const trustedPayload = {
+      specsVersion: 1,
       pickupName: payload.pickupName, remark: payload.remark, diningMode: payload.diningMode, tableNo: payload.tableNo,
       clientRequestId: payload.clientRequestId,
       items: payload.items.map(item => ({ productId: item.productId, options: item.options, quantity: item.quantity }))

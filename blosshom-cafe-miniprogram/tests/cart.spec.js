@@ -4,6 +4,13 @@ const latte = { id: 'latte', name: '经典拿铁', basePrice: 2200, enabled: tru
 
 describe('persistent cart model', () => {
   beforeEach(() => clearCart())
+  test('retains product pictures and refreshes them when an item is merged', () => {
+    addToCart({ ...latte, image: '/static/latte.png', fallbackImage: '/static/fallback.png' }, {}, 1)
+    expect(getCartItems()[0].image).toBe('/static/latte.png')
+    addToCart({ ...latte, image: 'https://example.com/new.png' }, {}, 1)
+    expect(getCartItems()[0].image).toBe('https://example.com/new.png')
+    expect(getCartTotal()).toBe(4400)
+  })
   test('merges same options and applies integer surcharge', () => {
     addToCart(latte, { temperature: 'iced', size: 'large', sugar: 'half' }, 1)
     addToCart(latte, { temperature: 'iced', size: 'large', sugar: 'half' }, 2)

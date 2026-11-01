@@ -1,5 +1,6 @@
 const cloud = require('wx-server-sdk')
 const { buildTrustedItems, validateCustomer } = require('./domain')
+const { withSpecs } = require('./product-specs')
 const { createJsapiOrder, createPaymentParams, loadConfig } = require('./wechatpay')
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
@@ -49,7 +50,7 @@ exports.main = async event => {
   }
 
   const products = await loadProducts(event.items || [])
-  const trusted = buildTrustedItems(products, event.items || [])
+  const trusted = buildTrustedItems(products.map(product => withSpecs(product, event.specsVersion)), event.items || [])
   const orderNo = orderNumber()
   const now = db.serverDate()
   const order = {

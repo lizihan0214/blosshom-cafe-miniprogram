@@ -1,4 +1,5 @@
 const cloud = require('wx-server-sdk')
+const { withSpecs } = require('./product-specs')
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
@@ -15,7 +16,7 @@ function serialize(value) {
   return value
 }
 
-exports.main = async () => {
+exports.main = async (event = {}) => {
   const [categoryResult, productResult, storeResult] = await Promise.all([
     db.collection('categories').where({ enabled: true }).orderBy('sort', 'asc').limit(100).get(),
     db.collection('products').where({ enabled: true }).orderBy('sort', 'asc').limit(100).get(),
@@ -23,7 +24,7 @@ exports.main = async () => {
   ])
 
   const categories = categoryResult.data.map(item => ({ ...item, id: item.id || item._id }))
-  const products = productResult.data.map(item => ({ ...item, id: item.id || item._id }))
+  const products = productResult.data.map(item => withSpecs({ ...item, id: item.id || item._id }, event.specsVersion))
 
   return serialize({
     categories,

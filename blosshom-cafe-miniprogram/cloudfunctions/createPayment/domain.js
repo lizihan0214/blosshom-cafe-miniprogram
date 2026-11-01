@@ -1,4 +1,4 @@
-const OPTION_KEYS = ['temperature', 'size', 'sugar']
+const OPTION_KEYS = ['temperature', 'size', 'ice', 'sugar', 'teaBase']
 
 function cleanText(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength)
@@ -22,6 +22,7 @@ function validateCustomer(payload) {
 function normalizeOptions(product, selected) {
   const schema = product.options || {}
   const result = {}
+  if (Object.keys(selected).some(key => !OPTION_KEYS.includes(key))) throw new Error('不支持所选规格')
 
   OPTION_KEYS.forEach(key => {
     const allowed = Array.isArray(schema[key]) ? schema[key] : []
