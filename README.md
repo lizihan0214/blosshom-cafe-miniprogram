@@ -15,6 +15,6 @@
 | :---: | :---: |
 | <img src="blosshom-cafe-miniprogram/docs/screenshots/cart.png" alt="购物车" width="280"> | <img src="blosshom-cafe-miniprogram/docs/screenshots/checkout.png" alt="确认订单" width="280"> |
 
-截图日期：2026-11-01。价格与营业信息以当前门店配置为准。
+截图日期：2026-11-01。
 
 源码位于 `blosshom-cafe-miniprogram/`。生产密钥和真实订单数据不属于仓库交付内容。源码更新与小程序正式发布是独立操作。
