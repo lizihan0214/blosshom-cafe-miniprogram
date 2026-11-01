@@ -4,6 +4,18 @@
 
 > 本仓库为源码与部署资料，不含生产数据库及支付、打印密钥。源码更新不等于微信正式版已发布。加载优化需继续真机验收，不宣称未经测量的性能提升。
 
+## 效果展示
+
+实际界面截图（2026-11-01），展示菜单浏览、规格选择、购物车和确认订单流程。价格及营业信息以当前门店配置为准。
+
+| 菜单浏览 | 规格选择 |
+| :---: | :---: |
+| <img src="docs/screenshots/menu.png" alt="菜单分类与商品列表" width="280"> | <img src="docs/screenshots/specifications.png" alt="抹茶维也纳商品图片与冰量选择" width="280"> |
+
+| 购物车 | 确认订单 |
+| :---: | :---: |
+| <img src="docs/screenshots/cart.png" alt="购物车商品图片、规格、数量与合计" width="280"> | <img src="docs/screenshots/checkout.png" alt="堂食外带选择与待填写的取餐信息" width="280"> |
+
 ## 功能
 
 - 桌牌小程序码 scene / 桌号解析，堂食与外带信息。
